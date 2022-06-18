@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="001050c9-e1bb-4b08-ae1a-23385528dd32" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Avaliacao-2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/primeiraQuestao/DAO/ProdutoDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/primeiraQuestao/factory/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/primeiraQuestao/modelo/Entrevista.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/primeiraQuestao/modelo/Produto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/primeiraQuestao/teste/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/segundaQuestao/DAO/FilmeDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/segundaQuestao/factory/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/segundaQuestao/modelo/Catalogo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/segundaQuestao/modelo/Filme.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/segundaQuestao/teste/TestaFilmes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/terceiraQuestao/modelo/Emoji.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/br/com/terceiraQuestao/teste/TestaEmoji.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2AcsQ89QntqaZmb2gfEy6kjJhBn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "last_opened_file_path": "D:/ideaProject/Avaliacao-2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.primeiraQuestao.teste.Main" />
+      <module name="Avaliacao-2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.primeiraQuestao.teste.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestaEmoji" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.terceiraQuestao.teste.TestaEmoji" />
+      <module name="Avaliacao-2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.terceiraQuestao.teste.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestaFilmes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.segundaQuestao.teste.TestaFilmes" />
+      <module name="Avaliacao-2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.segundaQuestao.teste.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TestaFilmes" />
+        <item itemvalue="Application.TestaEmoji" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="001050c9-e1bb-4b08-ae1a-23385528dd32" name="Changes" comment="" />
+      <created>1655320192567</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655320192567</updated>
+      <workItem from="1655320195703" duration="10239000" />
+      <workItem from="1655400223412" duration="17527000" />
+      <workItem from="1655465351043" duration="15769000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
