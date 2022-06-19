@@ -11,12 +11,6 @@ public class Produto {
     private double preco;
 
 
-    public Produto(String nome, String descricao, double preco) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.preco = preco;
-    }
-
     public Produto(int id, String nome, String decricao, int quantidade, double preco) {
         this.id = id;
         this.nome = nome;
@@ -37,32 +31,16 @@ public class Produto {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getDescricao() {
         return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public double getPreco() {
         return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
     }
 
     @Override

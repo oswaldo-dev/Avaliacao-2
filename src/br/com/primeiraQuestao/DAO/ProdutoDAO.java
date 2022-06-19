@@ -27,7 +27,21 @@ public class ProdutoDAO {
         }
     }
 
-    public void salvar(Produto produto) {
+    public void salvarListaACadastrar(List<Produto> produtos) {
+        try {
+            String sql = "INSERT INTO produtos_a_cadastrar (nome, descricao, quantidade, preco) VALUES (?, ?, ?, ?)";
+
+            try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                for (Produto produto : produtos) {
+                    salva(produto, pstm);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void salvarProduto(Produto produto) {
         try {
             String sql = "INSERT INTO produtos_a_cadastrar (nome, descricao, quantidade, preco) VALUES (?, ?, ?, ?)";
 
@@ -117,6 +131,19 @@ public class ProdutoDAO {
         }
     }
 
+    public void deletarListaCadastrado(List<Produto> produtos) {
+        try {
+            try (PreparedStatement stm = connection.prepareStatement("DELETE FROM produtos WHERE id = ?")) {
+                for (Produto produto : produtos) {
+                    stm.setInt(1, produto.getId());
+                    stm.execute();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void alterar(String nome, String descricao, Integer quantidade, Double preco, Integer id) {
         try {
             try (PreparedStatement stm = connection
@@ -146,33 +173,5 @@ public class ProdutoDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void reset(List<Produto> produtos) {
-
-        try {
-            String sql = "INSERT INTO produtos_a_cadastrar (nome, descricao, quantidade, preco) VALUES (?, ?, ?, ?)";
-
-            for (Produto produto : produtos) {
-                try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                    salva(produto, pstm);
-                }
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
-
-        try {
-            try (PreparedStatement stm = connection.prepareStatement("TRUNCATE TABLE produtos")) {
-                stm.execute();
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 }
