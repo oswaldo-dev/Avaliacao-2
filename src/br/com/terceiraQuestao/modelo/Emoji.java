@@ -53,12 +53,4 @@ public class Emoji {
         }
         return "neutro";
     }
-
-    public String getDivertido() {
-        return divertido;
-    }
-
-    public String getChateado() {
-        return chateado;
-    }
 }

@@ -2,6 +2,8 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+.idea/
+Avaliacao-2.iml
 
 ### Eclipse ###
 .apt_generated

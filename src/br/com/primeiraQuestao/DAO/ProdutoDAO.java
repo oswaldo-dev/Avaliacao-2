@@ -21,16 +21,8 @@ public class ProdutoDAO {
         return listaProdutosaCadastrar;
     }
 
-    public void setListaProdutosaCadastrar(List<Produto> listaProdutosaCadastrar) {
-        this.listaProdutosaCadastrar = listaProdutosaCadastrar;
-    }
-
     public List<Produto> getListaProdutosCadastrados() {
         return listaProdutosCadastrados;
-    }
-
-    public void setListaProdutosCadastrados(List<Produto> listaProdutosCadastrados) {
-        this.listaProdutosCadastrados = listaProdutosCadastrados;
     }
 
     public void salvarLista() {
@@ -39,20 +31,6 @@ public class ProdutoDAO {
             try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
                 for(Produto produto : listaProdutosaCadastrar) {
-                    salva(produto, pstm);
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void salvarListaACadastrar() {
-        try {
-            String sql = "INSERT INTO produtos_a_cadastrar (nome, descricao, quantidade, preco) VALUES (?, ?, ?, ?)";
-
-            try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                for (Produto produto : listaProdutosaCadastrar) {
                     salva(produto, pstm);
                 }
             }

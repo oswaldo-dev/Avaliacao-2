@@ -18,14 +18,6 @@ public class Entrevista {
         produtoDAO.reset();
     }
 
-    public ProdutoDAO getProdutoDAO() {
-        return produtoDAO;
-    }
-
-    public void setProdutoDAO(ProdutoDAO produtoDAO) {
-        this.produtoDAO = produtoDAO;
-    }
-
     public void menuPrincipal(){
         try {
             System.out.println("Informe o que deseja fazer:\n" +
