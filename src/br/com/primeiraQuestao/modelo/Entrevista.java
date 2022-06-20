@@ -9,118 +9,128 @@ public class Entrevista {
     private int opcao;
     private Scanner entrada;
 
+    private ProdutoDAO produtoDAO;
+
     public Entrevista() {
-        ProdutoDAO produtoDAO = new ProdutoDAO(ConnectionFactory.getConnection());
-        System.out.println("Informe o que deseja fazer:\n" +
-                "1 - Cadastrar 3 produtos.\n" +
-                "2 - Atualizar o primeiro produto cadastrado.\n" +
-                "3 - Excluir o segundo produto cadastrado.\n" +
-                "0 - Sair.");
-        entrada = new Scanner(System.in);
+        produtoDAO = new ProdutoDAO(ConnectionFactory.getConnection());
+        produtoDAO.deletarListaCadastrado();
+        produtoDAO.deletarACadastrarTodos();
+        produtoDAO.reset();
+    }
+
+    public ProdutoDAO getProdutoDAO() {
+        return produtoDAO;
+    }
+
+    public void setProdutoDAO(ProdutoDAO produtoDAO) {
+        this.produtoDAO = produtoDAO;
+    }
+
+    public void menuPrincipal(){
         try {
+            System.out.println("Informe o que deseja fazer:\n" +
+                    "1 - Cadastrar 3 produtos.\n" +
+                    "2 - Atualizar o primeiro produto cadastrado.\n" +
+                    "3 - Excluir o segundo produto cadastrado.\n" +
+                    "0 - Sair.");
+            entrada = new Scanner(System.in);
             opcao = Integer.parseInt(entrada.nextLine());
 
             switch (opcao) {
                 case 1:
-                    cadastraProduto(produtoDAO);
-
+                    cadastraProduto();
+                    break;
                 case 2:
-                    atualizaProduto(produtoDAO);
-
+                    atualizaProduto();
+                    break;
                 case 3:
-                    excluiProduto(produtoDAO);
-
+                    excluiProduto();
+                    break;
                 case 0:
-                    terminaPrograma(produtoDAO);
+                    terminaPrograma();
+                    break;
+                default:
+                    System.out.println("Não existe essa opção!!\n" +
+                            "DIGITE UMA OPÇÃO VALIDA!!");
+                    menuPrincipal();
             }
         } catch (NumberFormatException e) {
             System.out.println("Não existe essa opção!!\n" +
                     "DIGITE UMA OPÇÃO VALIDA!!");
 
-            opcao = Integer.parseInt(entrada.nextLine());
-
-            switch (opcao) {
-                case 1:
-                    cadastraProduto(produtoDAO);
-
-                case 2:
-                    atualizaProduto(produtoDAO);
-
-                case 3:
-                    excluiProduto(produtoDAO);
-
-                case 0:
-                    terminaPrograma(produtoDAO);
+            menuPrincipal();
+        } finally {
+            if (entrada != null) {
+                entrada.close();
             }
         }
 
-        entrada.close();
+        //entrada.close();
     }
 
-    private void terminaPrograma(ProdutoDAO produtoDAO) {
+    private void terminaPrograma() {
         System.out.println("\nPrograma finalizado com sucesso!");
-        produtoDAO.salvarListaACadastrar(produtoDAO.listaCadastrado());
-        produtoDAO.deletarListaCadastrado(produtoDAO.listaCadastrado());
     }
 
-    private void excluiProduto(ProdutoDAO produtoDAO) {
+    private void excluiProduto() {
         try {
+            produtoDAO.listaCadastrado();
             int segundoProduto = produtoDAO.listaCadastrado().size() - 2;
+            Produto produto = produtoDAO.getListaProdutosCadastrados().get(segundoProduto);
             System.out.println("Deseja excluir o item: \n" +
-                    produtoDAO.listaCadastrado().get(segundoProduto) +
+                    produto.getNome() +
                     "\n1 - Sim!" +
                     "\n2 - Não!");
 
             try {
-                menuExcluir(produtoDAO, segundoProduto);
+                menuExcluir(produto);
             } catch (NumberFormatException e) {
                 System.out.println("Essa opção nao existe!!\n" +
                         "DIGITE UMA OPÇÃO VALIDA!!");
 
-                menuExcluir(produtoDAO, segundoProduto);
+                menuExcluir(produto);
             }
         } catch (IndexOutOfBoundsException e) {
             System.out.println();
         }
     }
 
-    private void menuExcluir(ProdutoDAO produtoDAO, int segundoProduto) {
+    private void menuExcluir(Produto produto) {
         int opcao4 = Integer.parseInt(entrada.nextLine());
 
         switch (opcao4) {
             case 1:
-                produtoDAO.salvarProduto(produtoDAO.listaCadastrado().get(segundoProduto));
-                produtoDAO.deletarCadastrado(produtoDAO.listaCadastrado().get(segundoProduto));
+                produtoDAO.salvarProduto(produto);
+                produtoDAO.deletarCadastrado(produto);
                 System.out.println("Produto deletado com sucesso!!");
 
             case 2:
                 System.out.println();
-                new Entrevista();
+                menuPrincipal();
 
         }
     }
 
-    private void atualizaProduto(ProdutoDAO produtoDAO) {
+    private void atualizaProduto() {
+        Produto produto = null;
         try {
-            int primeiroProduto = produtoDAO.listaCadastrado().size() - 3;
-            System.out.println("Deseja atualizar o produto: \n" + produtoDAO.listaCadastrado().get(primeiroProduto) +
+            produtoDAO.listaCadastrado();
+            int primeiroProduto = produtoDAO.getListaProdutosCadastrados().size() - 3;
+            produto = produtoDAO.getListaProdutosCadastrados().get(primeiroProduto);
+            System.out.println("Deseja atualizar o produto: \n" + produto.getNome() +
                     "\n1 - Sim!" +
                     "\n2 - Não!");
+            menuAtualizar(produto);
 
-            try {
-                menuAtualizar(produtoDAO, primeiroProduto);
-            } catch (NumberFormatException e) {
-                System.out.println("Essa opção nao existe!!\n" +
-                        "DIGITE UMA OPÇÃO VALIDA!!");
+        } catch (NumberFormatException e) {
+            System.out.println("Essa opção nao existe!!\n" +
+                    "DIGITE UMA OPÇÃO VALIDA!!");
 
-                menuAtualizar(produtoDAO, primeiroProduto);
-            }
-        }catch (IndexOutOfBoundsException e) {
-            System.out.println();
+            menuAtualizar(produto);
         }
     }
 
-    private void menuAtualizar(ProdutoDAO produtoDAO, int primeiroProduto) {
+    private void menuAtualizar(Produto produto) {
         int opcao3 = Integer.parseInt(entrada.nextLine());
 
         switch (opcao3) {
@@ -139,44 +149,51 @@ public class Entrevista {
 
 
                 produtoDAO.alterar(novoNome, novaDescricao, novaQuantidade,
-                        novoPreco, produtoDAO.listaCadastrado().get(primeiroProduto).getId());
+                        novoPreco, produto.getId());
                 System.out.println("Produto atualizado com sucesso!!");
 
             case 2:
                 System.out.println();
-                new Entrevista();
+                menuPrincipal();
 
         }
     }
 
-    private void cadastraProduto(ProdutoDAO produtoDAO) {
-
-        System.out.println(produtoDAO.listarCadastrar());
-        System.out.println("\nDeseja cadastrar esses itens? " +
-                "\n1 - Sim!" +
-                "\n2 - Não!");
+    private void cadastraProduto() {
         try {
-            menuCadastro(produtoDAO);
+            produtoDAO.listaraCadastrar();
+            if (produtoDAO.getListaProdutosaCadastrar().size() == 0) {
+                System.out.println("\nLista de produtos vazias, não tem mais produtos a listar");
+                menuPrincipal();
+            } else {
+                System.out.println(produtoDAO.getListaProdutosaCadastrar());
+                System.out.println("\nDeseja cadastrar esses itens? " +
+                        "\n1 - Sim!" +
+                        "\n2 - Não!");
+
+                menuCadastro();
+            }
         } catch (NumberFormatException e) {
             System.out.println("Essa opção nao existe!!\n" +
                     "DIGITE UMA OPÇÃO VALIDA!!");
 
-            menuCadastro(produtoDAO);
+            menuCadastro();
         }
     }
 
-    private void menuCadastro(ProdutoDAO produtoDAO) {
+    private void menuCadastro() {
         int opcao2 = Integer.parseInt(entrada.nextLine());
 
         switch (opcao2) {
-            case 1:
-                produtoDAO.salvarLista(produtoDAO.listarCadastrar());
-                produtoDAO.deletarACadastrar(produtoDAO.listarCadastrar());
+            case 1: //Sim
+                produtoDAO.salvarLista();
+                produtoDAO.deletarACadastrar(produtoDAO.getListaProdutosaCadastrar());
+                produtoDAO.limpaLista();
                 System.out.println("Produtos cadastrados com sucesso!!");
 
-            case 2:
+            case 2: //Não
                 System.out.println();
-                new Entrevista();
+                menuPrincipal();
 
         }
     }
